@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     CarteAdapter carteAdapter;
     int selectedCat = 0;
     TextView txtTotal;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
