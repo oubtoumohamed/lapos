@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MenuChangeQuantity"
+        android:title="Changer la quantité" />
+    <item
+        android:id="@+id/MenuChangeSolde"
+        android:title="Ajouter une Remise"/>
+    <item
+        android:id="@+id/MenuDeleteProduct"
+        android:title="Supprimer le produit"/>
+</menu>

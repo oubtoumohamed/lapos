@@ -13,7 +13,7 @@ public class Product {
     private int manage_stock=0;
 
     // used only for carte
-    private int qty=1;
+    private float qty=1;
 
     public Product() {
         this.name = "";
@@ -47,11 +47,18 @@ public class Product {
     public String getColor() { return color; }
     public void setColor(String color) { this.color = color; }
 
-    public double getPrice() { return price; }
+    public double getPrice() { return price - ( ( price * solde ) / 100 ); }
     public void setPrice(double price) { this.price = price; }
 
     public double getSolde() { return solde; }
-    public void setSolde(double solde) { this.solde = solde; }
+    public String getStringSolde() {
+        if(solde == (long) solde)
+            return String.format("%d",(long)solde);
+        else
+            return String.format("%s",solde);
+    }
+    public double calculSolde() { return ( price * solde ) / 100 ; }
+    public void setSolde(double solde) { this.solde = solde > 0 ? solde : 0 ; }
 
     public int getCategory() { return category; }
     public void setCategory(int category) { this.category = category; }
@@ -62,12 +69,23 @@ public class Product {
     public int isManage_stock() { return manage_stock; }
     public void setManage_stock(int manage_stock) { this.manage_stock = manage_stock; }
 
-    public int getQty() { return qty; }
-    public void setQty(int q) { this.qty = q; }
+    public float getQty() { return qty; }
+    public String getStringQty() {
+        if(qty == (long) qty)
+            return String.format("%d",(long)qty);
+        else
+            return String.format("%s",qty);
+    }
+    public void setQty(float q) { this.qty = q >= 1 ? q : 1 ; }
+    public void upQty() { this.qty ++; }
+    public void downQty() { if( this.qty > 1 ) this.qty --; }
 
     @Override
     public String toString() {
-        return this.name;
+        if( this.solde == 0 )
+            return this.name;
+
+        return this.name + "\n \n \t\t\t - Remise ( " + this.getStringSolde() + "% ) : -" + this.calculSolde() ;
     }
 
 }

@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">LAPOS</string>
+
+    <string name="product_name">Produit</string>
+    <string name="product_price">Prix</string>
+    <string name="product_qty_short">Qte.</string>
+    <string name="product_qty_full">Quantité</string>
+    <string name="product_solde">Remise ( % )</string>
+
+    <string name="carte_total">Total : </string>
+    <string name="carte_empty">Annuler</string>
+    <string name="carte_confirm_empty">\n Êtes-vous sûr de vouloir vider le panier ?</string>
+
+    <string name="caisser_name">Caissier : </string>
+
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="vlidate">Valider</string>
+    <string name="cancel">Annuler</string>
+    <string name="confirm">Confirmation</string>
+
+    <string-array name="product_options">
+        <item>Changer la quantité</item>
+        <item>- Qy</item>
+        <item>Remise +</item>
+        <item>Remise -</item>
+    </string-array>
+
 </resources>
