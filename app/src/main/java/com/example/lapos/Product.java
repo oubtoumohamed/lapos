@@ -1,5 +1,10 @@
 package com.example.lapos;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
+import java.util.ArrayList;
+
 public class Product {
     private int id;
     private String name;
@@ -87,5 +92,76 @@ public class Product {
 
         return this.name + "\n \n \t\t\t - Remise ( " + this.getStringSolde() + "% ) : -" + this.calculSolde() ;
     }
+
+
+
+    // DB table
+
+    public static final String TABLE_PRODUCT = "product";
+    /* Keys for Table Product */
+    private static final String prd_id = "id";
+    private static final String prd_name = "name";
+    private static final String prd_price = "price";
+    private static final String prd_description = "description";
+    private static final String prd_image = "image";
+    private static final String prd_color = "color";
+    private static final String prd_solde = "solde";
+    private static final String prd_category = "category";
+    private static final String prd_supplier = "supplier";
+    private static final String prd_manage_stock = "manage_stock";
+
+    public static String CREATE_TABLE_PRODUCT = "CREATE TABLE " + TABLE_PRODUCT + "(" +
+            prd_id + " INTEGER PRIMARY KEY," +
+            prd_name + " TEXT," +
+            prd_price + " REAL,"  +
+            prd_description + " TEXT,"  +
+            prd_image + " TEXT,"  +
+            prd_color + " TEXT,"  +
+            prd_solde + " REAL," +
+            prd_category + " INTEGER,"  +
+            prd_supplier + " INTEGER,"  +
+            prd_manage_stock + " BOOLEAN "  + ")";
+
+
+    public ContentValues prepare_insert(){
+        ContentValues values = new ContentValues();
+        values.put( prd_name, this.getName() );
+        values.put( prd_price, this.getPrice() );
+        values.put( prd_description, this.getDescription() );
+        values.put( prd_image, this.getImage() );
+        values.put( prd_color, this.getColor() );
+        values.put( prd_solde, this.getSolde() );
+        values.put( prd_category, this.getCategory() );
+        values.put( prd_supplier, this.getSupplier() );
+        values.put( prd_manage_stock, this.isManage_stock() );
+
+        return values;
+    }
+
+    public static ArrayList<Product> list(Cursor c ){
+        ArrayList<Product> products = new ArrayList<Product>();
+
+        if (c != null) {
+            while (c.moveToNext()) {
+                Product prd = new Product();
+
+                prd.setId( c.getInt(c.getColumnIndex( prd_id ) ) );
+                prd.setName( c.getString(c.getColumnIndex( prd_name ) ) );
+                prd.setPrice( c.getFloat(c.getColumnIndex( prd_price ) ) );
+                prd.setDescription( c.getString(c.getColumnIndex( prd_description ) ) );
+                prd.setImage( c.getString(c.getColumnIndex( prd_image ) ) );
+                prd.setColor( c.getString(c.getColumnIndex( prd_color ) ) );
+                prd.setSolde( c.getFloat(c.getColumnIndex( prd_solde ) ) );
+                prd.setCategory( c.getInt(c.getColumnIndex( prd_category ) ) );
+                prd.setSupplier( c.getInt(c.getColumnIndex( prd_supplier ) ) );
+                prd.setManage_stock( c.getInt(c.getColumnIndex( prd_manage_stock ) ) );
+
+                products.add(prd);
+            }
+        }
+
+        return  products;
+    }
+
 
 }

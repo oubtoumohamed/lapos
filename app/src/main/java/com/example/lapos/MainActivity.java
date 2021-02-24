@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
         //editText.setText(":jmlk k");
         /*
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-
         alertDialog.setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.confirm)
                 .setView(getLayoutInflater().inflate(R.layout.product_edit, null))
