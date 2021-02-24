@@ -12,26 +12,21 @@ public class Product {
     private String description="";
     private String image="";
     private String color="#E6E6E6";
-    private double solde = 0;
     private int category;
     private int supplier;
     private int manage_stock=0;
-
-    // used only for carte
-    private float qty=1;
 
     public Product() {
         this.name = "";
         this.price = 0;
     }
 
-    public Product( String na, double pr, String de, String im, String co, double so, int ca, int su, int  ma) {
+    public Product( String na, double pr, String de, String im, String co, int ca, int su, int  ma) {
         this.name = na;
         this.price = pr;
         this.description = de;
         this.image = im;
         this.color = co;
-        this.solde = so;
         this.category = ca;
         this.supplier = su;
         this.manage_stock = ma;
@@ -52,18 +47,8 @@ public class Product {
     public String getColor() { return color; }
     public void setColor(String color) { this.color = color; }
 
-    public double getPrice() { return price - ( ( price * solde ) / 100 ); }
+    public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
-
-    public double getSolde() { return solde; }
-    public String getStringSolde() {
-        if(solde == (long) solde)
-            return String.format("%d",(long)solde);
-        else
-            return String.format("%s",solde);
-    }
-    public double calculSolde() { return ( price * solde ) / 100 ; }
-    public void setSolde(double solde) { this.solde = solde > 0 ? solde : 0 ; }
 
     public int getCategory() { return category; }
     public void setCategory(int category) { this.category = category; }
@@ -74,25 +59,8 @@ public class Product {
     public int isManage_stock() { return manage_stock; }
     public void setManage_stock(int manage_stock) { this.manage_stock = manage_stock; }
 
-    public float getQty() { return qty; }
-    public String getStringQty() {
-        if(qty == (long) qty)
-            return String.format("%d",(long)qty);
-        else
-            return String.format("%s",qty);
-    }
-    public void setQty(float q) { this.qty = q >= 1 ? q : 1 ; }
-    public void upQty() { this.qty ++; }
-    public void downQty() { if( this.qty > 1 ) this.qty --; }
-
     @Override
-    public String toString() {
-        if( this.solde == 0 )
-            return this.name;
-
-        return this.name + "\n \n \t\t\t - Remise ( " + this.getStringSolde() + "% ) : -" + this.calculSolde() ;
-    }
-
+    public String toString() { return this.name;  }
 
 
     // DB table
@@ -130,7 +98,6 @@ public class Product {
         values.put( prd_description, this.getDescription() );
         values.put( prd_image, this.getImage() );
         values.put( prd_color, this.getColor() );
-        values.put( prd_solde, this.getSolde() );
         values.put( prd_category, this.getCategory() );
         values.put( prd_supplier, this.getSupplier() );
         values.put( prd_manage_stock, this.isManage_stock() );
@@ -151,7 +118,6 @@ public class Product {
                 prd.setDescription( c.getString(c.getColumnIndex( prd_description ) ) );
                 prd.setImage( c.getString(c.getColumnIndex( prd_image ) ) );
                 prd.setColor( c.getString(c.getColumnIndex( prd_color ) ) );
-                prd.setSolde( c.getFloat(c.getColumnIndex( prd_solde ) ) );
                 prd.setCategory( c.getInt(c.getColumnIndex( prd_category ) ) );
                 prd.setSupplier( c.getInt(c.getColumnIndex( prd_supplier ) ) );
                 prd.setManage_stock( c.getInt(c.getColumnIndex( prd_manage_stock ) ) );

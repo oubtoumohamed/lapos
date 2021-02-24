@@ -38,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
     int selectedCat = 0;
     TextView txtTotal;
 
-    // temp
-    float tmp_qty;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,18 +76,16 @@ public class MainActivity extends AppCompatActivity {
                                 changeRemise(position);
                                 break;
                             case R.id.MenuDeleteProduct:
-                                carteAdapter.deleteProduct(position);
+                                carteAdapter.deleteOrder(position);
                                 carteupdate();
                                 break;
                         }
-                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
-
                 popup.show();//showing popup menu
             }
-
         });
 
     }
@@ -114,10 +109,8 @@ public class MainActivity extends AppCompatActivity {
         categoriesTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                // called when tab selected
                 selectedCat = categories.get( tab.getPosition() ).getId();
                 loadProducts();
-                //Log.v("TAGOS", "selected : "  + categories.get( pos ).toString() );
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) { }
@@ -135,27 +128,12 @@ public class MainActivity extends AppCompatActivity {
         productsGridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //selectedCat = categories.get( position ).getId();
-                //loadProducts();
-                //Log.v("TAGOS", "selected : "  + products.get( position ).toString() );
 
-                carteAdapter.addProduct( products.get( position ) );
-                //carteAdapter = new CarteAdapter(getApplicationContext(), carte_products);
+                carteAdapter.addOrder( new Order(products.get( position )) );
                 carteupdate();
             }
         });
-
-
     }
-
-    /*public void deete_product_item(View v){
-        Button btn = (Button) v;
-
-        //Log.v("TAGOS", "selected : "  + btn.getTag(1) );
-        //Log.v("TAGOS", "selected : "  + btn.getParent().toString() );
-
-
-    }*/
 
     public void carteupdate(){
         carteAdapter.notifyDataSetChanged();
@@ -173,29 +151,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         carteAdapter.empty();
                         carteupdate();
-                        //Toast.makeText(MainActivity.this, "Activity closed",Toast.LENGTH_SHORT).show();
                     }
                 }).setNegativeButton(R.string.no, null).show();
     }
 
     public void changeQty(int position){
-        //EditText editText = (EditText) findViewById( R.id.editTextTextPersonName );
-        //editText.setText(":jmlk k");
-        /*
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle(R.string.confirm)
-                .setView(getLayoutInflater().inflate(R.layout.product_edit, null))
-                .setMessage(R.string.carte_confirm_empty)
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, "Activity closed",Toast.LENGTH_SHORT).show();
-                    }
-                }).setNegativeButton(R.string.no, null).show();
-
-        */
-
         final EditText input = new EditText(this);
         input.setInputType( InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL );
         input.setPadding(50,50,50,50);
@@ -208,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         float qt = Float.parseFloat( "0" + input.getText().toString() );
-                        carteAdapter.getItem(position).setQty( qt );
+                        carteAdapter.setOrderQty( position, qt );
                         carteupdate();
                     }
                 })
@@ -229,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         float solde = Float.parseFloat( "0" + input.getText().toString() );
-                        carteAdapter.getItem(position).setSolde( solde );
+                        carteAdapter.setOrderSolde( position, solde );
                         carteupdate();
                     }
                 })
