@@ -53,8 +53,6 @@ public class CarteAdapter extends BaseAdapter {
             this.Orders.add(order);
             this.Total += order.getPrice() * order.getQty();
         }
-        */
-
         if( this.orders.contains(order) ){
             // update Ordere
             int pos = orders.indexOf(order);
@@ -63,7 +61,9 @@ public class CarteAdapter extends BaseAdapter {
             // add Order
             orders.add(order);
         }
+        */
 
+        orders.add(order);
         Total += order.price();
     }
 
