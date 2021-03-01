@@ -22,15 +22,19 @@ public class DB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
-        db.execSQL(Category.CREATE_TABLE_CATEGORY);
-        db.execSQL(Product.CREATE_TABLE_PRODUCT);
+        db.execSQL(Category._CREATE_TABLE_);
+        db.execSQL(Product._CREATE_TABLE_);
+        db.execSQL(Order._CREATE_TABLE_);
+        db.execSQL(Sale._CREATE_TABLE_);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS " + Category.TABLE_CATEGORY);
-        db.execSQL("DROP TABLE IF EXISTS " + Product.TABLE_PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + Category._TABLE_);
+        db.execSQL("DROP TABLE IF EXISTS " + Product._TABLE_);
+        db.execSQL("DROP TABLE IF EXISTS " + Order._TABLE_);
+        db.execSQL("DROP TABLE IF EXISTS " + Sale._TABLE_);
         onCreate(db);
     }
     /******************************************
@@ -41,13 +45,13 @@ public class DB extends SQLiteOpenHelper {
         SQLiteDatabase databas= getWritableDatabase();
         databas.execSQL(query);*/
         SQLiteDatabase database = getWritableDatabase();
-        long c = database.insert(Category.TABLE_CATEGORY, null, cat.prepare_insert());
+        long c = database.insert(Category._TABLE_, null, cat.prepare_insert());
         database.close();
         return c;
     }
     /* Method for fetching record from Database */
     public ArrayList<Category> getAllCategories() {
-        String query = "SELECT * FROM " + Category.TABLE_CATEGORY;
+        String query = "SELECT * FROM " + Category._TABLE_;
         SQLiteDatabase database = getReadableDatabase();
         return Category.list( database.rawQuery(query, null) );
     }
@@ -57,13 +61,13 @@ public class DB extends SQLiteOpenHelper {
      * ******************************************/
     public long createProduct(Product prd) {
         SQLiteDatabase database = getWritableDatabase();
-        long c = database.insert(Product.TABLE_PRODUCT, null, prd.prepare_insert());
+        long c = database.insert(Product._TABLE_, null, prd.prepare_insert());
         database.close();
         return c;
     }
     /* Method for fetching record from Database */
     public ArrayList<Product> getAllProduct(int catId) {
-        String query = "SELECT * FROM " + Product.TABLE_PRODUCT;
+        String query = "SELECT * FROM " + Product._TABLE_;
         if( catId > 0 )
             query += " WHERE category = " + catId;
 

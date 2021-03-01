@@ -65,7 +65,7 @@ public class Product {
 
     // DB table
 
-    public static final String TABLE_PRODUCT = "product";
+    public static final String _TABLE_ = "product";
     /* Keys for Table Product */
     private static final String prd_id = "id";
     private static final String prd_name = "name";
@@ -78,7 +78,7 @@ public class Product {
     private static final String prd_supplier = "supplier";
     private static final String prd_manage_stock = "manage_stock";
 
-    public static String CREATE_TABLE_PRODUCT = "CREATE TABLE " + TABLE_PRODUCT + "(" +
+    public static String _CREATE_TABLE_ = "CREATE TABLE " + _TABLE_ + "(" +
             prd_id + " INTEGER PRIMARY KEY," +
             prd_name + " TEXT," +
             prd_price + " REAL,"  +

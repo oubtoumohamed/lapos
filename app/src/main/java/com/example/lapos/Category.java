@@ -35,11 +35,11 @@ public class Category {
 
     // DB table
 
-    public static final String TABLE_CATEGORY = "caegory";
+    public static final String _TABLE_ = "caegory";
     public static final String cat_id = "id";
     private static final String cat_labl = "label";
 
-    public static String CREATE_TABLE_CATEGORY = "CREATE TABLE " + TABLE_CATEGORY + "(" +
+    public static String _CREATE_TABLE_ = "CREATE TABLE " + _TABLE_ + "(" +
             cat_id + " INTEGER PRIMARY KEY," +
             cat_labl + " TEXT" + ")";
 

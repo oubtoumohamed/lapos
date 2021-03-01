@@ -4,7 +4,7 @@ public class Sale {
 
     // DB table
 
-    public static final String TABLE_NAME = "sales";
+    public static final String _TABLE_ = "sales";
     /* Keys for Table Product */
     private static final String _id = "id";
     private static final String _caiser_name = "caiser_name";
@@ -18,7 +18,7 @@ public class Sale {
     private static final String prd_supplier = "supplier";
     private static final String prd_manage_stock = "manage_stock";
 
-    public static String _CREATE_TABLE_ = "CREATE TABLE " + TABLE_NAME + "(" +
+    public static String _CREATE_TABLE_ = "CREATE TABLE " + _TABLE_ + "(" +
             _id + " INTEGER PRIMARY KEY," +
             _name + " TEXT," +
             prd_price + " REAL,"  +

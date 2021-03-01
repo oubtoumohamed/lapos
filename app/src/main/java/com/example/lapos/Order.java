@@ -70,7 +70,7 @@ public class Order {
 
     // DB table
 
-    public static final String TABLE_ORDER = "order";
+    public static final String _TABLE_ = "orders";
     /* Keys for Table Product */
     private static final String _id = "id";
     private static final String prd_id = "product_id";
@@ -78,7 +78,7 @@ public class Order {
     private static final String prd_solde = "solde";
     private static final String order_sale_id = "sale_id";
 
-    public static String CREATE_TABLE_ORDER = "CREATE TABLE " + TABLE_ORDER + "(" +
+    public static String _CREATE_TABLE_ = "CREATE TABLE " + _TABLE_ + "(" +
             _id + " INTEGER PRIMARY KEY," +
             prd_id + " INTEGER," +
             quantity + " REAL," +
