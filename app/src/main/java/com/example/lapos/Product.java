@@ -32,6 +32,22 @@ public class Product {
         this.manage_stock = ma;
     }
 
+    public Product( Cursor c ) {
+        if (c.moveToFirst())
+        {
+            this.setId( c.getInt(c.getColumnIndex( prd_id ) ) );
+            this.setName( c.getString(c.getColumnIndex( prd_name ) ) );
+            this.setPrice( c.getFloat(c.getColumnIndex( prd_price ) ) );
+            this.setDescription( c.getString(c.getColumnIndex( prd_description ) ) );
+            this.setImage( c.getString(c.getColumnIndex( prd_image ) ) );
+            this.setColor( c.getString(c.getColumnIndex( prd_color ) ) );
+            this.setCategory( c.getInt(c.getColumnIndex( prd_category ) ) );
+            this.setSupplier( c.getInt(c.getColumnIndex( prd_supplier ) ) );
+            this.setManage_stock( c.getInt(c.getColumnIndex( prd_manage_stock ) ) );
+        }
+        c.close();
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

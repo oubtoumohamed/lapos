@@ -20,6 +20,16 @@ public class Order {
         this.product = product;
     }
 
+    public Order( Cursor c ) {
+        if (c.moveToFirst())
+        {
+            this.setId( c.getInt(c.getColumnIndex( _id ) ) );
+            this.setQty( c.getFloat(c.getColumnIndex( quantity ) ) );
+            this.setSolde( c.getFloat(c.getColumnIndex( prd_solde ) ) );
+            this.setSale_id( c.getInt(c.getColumnIndex( order_sale_id ) ) );
+        }
+        c.close();
+    }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

@@ -75,12 +75,60 @@ public class DB extends SQLiteOpenHelper {
         return Product.list( database.rawQuery(query, null) );
     }
 
+    public Product getProduct(int Id) {
+        String query = "SELECT * FROM " + Product._TABLE_ + " where id = " + Id;
 
+        SQLiteDatabase database = getReadableDatabase();
+        return new Product( database.rawQuery(query, null) );
+    }
 
+    /******************************************
+     * --------------ORDER-------------------
+     * ******************************************/
+    public long createOrder(Order ordr) {
+        SQLiteDatabase database = getWritableDatabase();
+        long c = database.insert(Order._TABLE_, null, ordr.prepare_insert());
+        database.close();
+        return c;
+    }
+    /* Method for fetching record from Database */
+    public ArrayList<Order> getAllOrders() {
+        String query = "SELECT * FROM " + Order._TABLE_;
 
+        SQLiteDatabase database = getReadableDatabase();
+        return Order.list( database.rawQuery(query, null) );
+    }
 
+    public Order getOrder(int Id) {
+        String query = "SELECT * FROM " + Order._TABLE_ + " where id = " + Id;
 
+        SQLiteDatabase database = getReadableDatabase();
+        return new Order( database.rawQuery(query, null) );
+    }
 
+    /******************************************
+     * --------------SALE-------------------
+     * ******************************************/
+    public long createSale(Sale sl) {
+        SQLiteDatabase database = getWritableDatabase();
+        long c = database.insert(Sale._TABLE_, null, sl.prepare_insert());
+        database.close();
+        return c;
+    }
+    /* Method for fetching record from Database */
+    public ArrayList<Sale> getAllSales() {
+        String query = "SELECT * FROM " + Sale._TABLE_;
+
+        SQLiteDatabase database = getReadableDatabase();
+        return Sale.list( database.rawQuery(query, null) );
+    }
+
+    public Sale getSale(int Id) {
+        String query = "SELECT * FROM " + Sale._TABLE_ + " where id = " + Id;
+
+        SQLiteDatabase database = getReadableDatabase();
+        return new Sale( database.rawQuery(query, null) );
+    }
 
 
 
@@ -88,6 +136,22 @@ public class DB extends SQLiteOpenHelper {
     I have given an example, you have to do something like this.
 
     public Employee getEmployeeByCode(int code) {
+        String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE " + POSITION + " = " + position;
+
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        int userId;
+
+        if (cursor.moveToFirst())
+        {
+            userId = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return userId;
+
+
         String query = "SELECT * FROM " + TABLE_EMP + " WHERE " + KEY_CODE + " = " + code;
         Employee emp = new Employee();
         SQLiteDatabase database = getReadableDatabase();
