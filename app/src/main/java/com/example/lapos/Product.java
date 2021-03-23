@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Product {
     private int id;
     private String name;
-    private double price;
+    private float price;
     private String description="";
     private String image="";
     private String color="#E6E6E6";
@@ -21,7 +21,7 @@ public class Product {
         this.price = 0;
     }
 
-    public Product( String na, double pr, String de, String im, String co, int ca, int su, int  ma) {
+    public Product( String na, float pr, String de, String im, String co, int ca, int su, int  ma) {
         this.name = na;
         this.price = pr;
         this.description = de;
@@ -63,8 +63,8 @@ public class Product {
     public String getColor() { return color; }
     public void setColor(String color) { this.color = color; }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public float getPrice() { return price; }
+    public void setPrice(float price) { this.price = price; }
 
     public int getCategory() { return category; }
     public void setCategory(int category) { this.category = category; }

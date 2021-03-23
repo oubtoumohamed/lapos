@@ -8,7 +8,8 @@
     <string name="product_solde">Remise ( % )</string>
 
     <string name="carte_total">Total : </string>
-    <string name="carte_empty">Annuler</string>
+    <string name="carte_empty">Vider</string>
+    <string name="carte_payment">Paiement</string>
     <string name="carte_confirm_empty">\n Êtes-vous sûr de vouloir vider le panier ?</string>
 
     <string name="caisser_name">Caissier : </string>
@@ -18,6 +19,10 @@
     <string name="vlidate">Valider</string>
     <string name="cancel">Annuler</string>
     <string name="confirm">Confirmation</string>
+
+    <string name="payment_ccard">c. bancaire</string>
+    <string name="payment_cash">Espèces</string>
+    <string name="payment_div">Divisé</string>
 
     <string-array name="product_options">
         <item>Changer la quantité</item>

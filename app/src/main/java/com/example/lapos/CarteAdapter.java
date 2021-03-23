@@ -24,6 +24,8 @@ public class CarteAdapter extends BaseAdapter {
         this.Total = 0;
     }
 
+    public ArrayList<Order> getOrders() { return orders; }
+
     public boolean isEmty(){
         return this.orders.isEmpty();
     }

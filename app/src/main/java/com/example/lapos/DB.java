@@ -96,20 +96,21 @@ public class DB extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + Order._TABLE_;
 
         SQLiteDatabase database = getReadableDatabase();
-        return Order.list( database.rawQuery(query, null) );
+        return Order.list( database.rawQuery(query, null), this );
     }
 
     public Order getOrder(int Id) {
         String query = "SELECT * FROM " + Order._TABLE_ + " where id = " + Id;
 
         SQLiteDatabase database = getReadableDatabase();
-        return new Order( database.rawQuery(query, null) );
+        return new Order( database.rawQuery(query, null), this);
     }
 
     /******************************************
      * --------------SALE-------------------
      * ******************************************/
     public long createSale(Sale sl) {
+
         SQLiteDatabase database = getWritableDatabase();
         long c = database.insert(Sale._TABLE_, null, sl.prepare_insert());
         database.close();
