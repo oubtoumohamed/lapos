@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import androidx.appcompat.widget.Toolbar;
+
 public class MainActivity extends AppCompatActivity {
 
     DB databaseHelper;
@@ -53,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        /*getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);*/
 
         databaseHelper = new DB(MainActivity.this);
         categoriesTab = findViewById(R.id.TabCats);
@@ -333,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
                 sale.setPayment_method("Division");
                 break;
         }
-        /*
+
         int sale_id = (int) databaseHelper.createSale(sale);
         Toast.makeText(MainActivity.this, "Id : "+sale_id, Toast.LENGTH_LONG).show();
 
@@ -344,7 +354,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.v("ORDER", "ORDER  : " + ordr_id +" || "+ ordr._toString() );
             }
         }
-        */
+
         payment_Dialog.dismiss();
+    }
+
+    // Menu icons are inflated just as they were with actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
     }
 }
